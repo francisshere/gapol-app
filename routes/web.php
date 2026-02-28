@@ -5,13 +5,16 @@ use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use App\Services\UserService;
 use Illuminate\Support\Facades\Response;
+use App\Services\ProductService;
+use App\Http\Controllers\ProductController;
+
+
 
 // EXERCISE 2
 
 Route::get('/', function () {
-    // return view('welcome');
-    return 'Hello World';
-    
+    //return 'Hello World';
+    return view('welcome', ['name' => 'gapol-app']);
 });
 
 Route::get('/show-users', [UserController::class, 'show']);
@@ -82,4 +85,17 @@ Route::get('/token', function (Request $request) {
 
 Route::post('/token', function (Request $request) {
     return $request->all();
+});
+
+// Controller
+// Middleware
+Route::get('/users', [UserController::class, 'index'])->middleware('user-middleware');
+
+//Resource
+Route::resource('products', ProductController::class);
+
+//View with data
+Route::get('/product-list', function (ProductService $productService){
+    $data['products'] = $productService->listProducts();
+    return view('products.list', $data);
 });
