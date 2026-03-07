@@ -1,4 +1,6 @@
 <div>
+    <!-- The best way to take care of the future is to take care of the present moment. - Thich Nhat Hanh -->
+
     <style>
         body {
             margin: 0;
@@ -90,31 +92,26 @@
     </style>
 
 <x-layout>
-    <x-slot:heading>
-        Product List
-    </x-slot>
+    <x-slot name="heading">User List</x-slot>
 
-    <table>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Category</th>
-            </tr>
-        </thead>
-        <tbody>
-            @forelse ($products as $product)
-                <tr>
-                    <td>{{ $product['id'] }}</td>
-                    <td>{{ $product['name'] }}</td>
-                    <td>{{ $product['category'] }}</td>
-                </tr>
-            @empty
-                <tr>
-                    <td colspan="3">No products found.</td>
-                </tr>
-            @endforelse
-        </tbody>
-    </table>
+        <div class="container">
+            <table class="table table-stripped">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Gender</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($users as $user)
+                        <tr>
+                            <td>{{ $user['id'] }}</td>
+                            <td>{{ $user['name'] }}</td>
+                            <td>{{ $user['gender'] }}</td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+    </div>
 </x-layout>
-</div>

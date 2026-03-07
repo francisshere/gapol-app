@@ -1,9 +1,10 @@
-<html>
-<head>
+<x-layout>
+<x-slot:heading>
+    Home
+</x-slot>
     <title>Welcome</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
     <style>
@@ -14,20 +15,26 @@
         }
 
         body {
-            height: 100vh;
+            min-height: 100vh;
             display: flex;
-            justify-content: center;
-            align-items: center;
+            flex-direction: column;
             font-family: 'Poppins', sans-serif;
             background: linear-gradient(135deg, #667eea, #764ba2);
         }
 
+        x-layout, x-slot {
+            display: contents;
+        }
+
         .container {
+            margin: auto;
             background: rgba(255, 255, 255, 0.15);
             backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px);
             border-radius: 20px;
-            padding: 60px 80px;
+            padding: clamp(40px, 8vw, 60px) clamp(30px, 10vw, 80px);
+            width: 90%;
+            max-width: 600px;
             text-align: center;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
             color: white;
@@ -40,7 +47,7 @@
         }
 
         h1 {
-            font-size: 42px;
+            font-size: clamp(28px, 6vw, 42px);
             font-weight: 700;
             margin-bottom: 15px;
         }
@@ -68,14 +75,10 @@
             transform: scale(1.05);
         }
     </style>
-</head>
-<body>
 
     <div class="container">
         <h1>Welcome to {{ $name }}</h1>
         <p>Your modern Laravel page is ready.</p>
         <button class="btn">Get Started</button>
     </div>
-
-</body>
-</html>
+</x-layout>
